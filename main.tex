@@ -1,0 +1,186 @@
+%-------------------------------------------------------------------------------
+% Resume - Tara Chand Kumawat
+% Compile with: pdflatex main.tex
+% Standard packages only - no external .cls file required.
+%
+% TEMPLATE USAGE
+%   \role{Company}{Dates}{Job Title}{Location}   - one experience/education entry
+%   bullets environment                          - the bullet list under an entry
+%   \skillrow{Category}{items}                   - one line in Skills
+%   \certrow{Certification name}{Issuer}         - one line for a two-column row
+%-------------------------------------------------------------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.75in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Tara Chand Kumawat - Resume},
+  pdfauthor={Tara Chand Kumawat},
+  pdfsubject={Software Engineer Resume}
+}
+
+%------------------------------- PAGE SETUP ------------------------------------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\raggedbottom
+\raggedright
+
+%------------------------------- SECTION STYLE ---------------------------------
+\titleformat{\section}
+  {\large\bfseries}
+  {}{0em}{\uppercase}
+  [\vspace{-0.6em}\rule{\textwidth}{0.8pt}]
+\titlespacing*{\section}{0pt}{1.1em}{0em}
+
+%------------------------------- HELPER MACROS ---------------------------------
+% \role{Company}{Dates}{Job Title}{Location}
+\newcommand{\role}[4]{%
+  \vspace{2pt}
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+  \end{tabular*}
+  \vspace{-6pt}
+}
+
+% \skillrow{Category}{Comma, separated, list}
+\newcommand{\skillrow}[2]{\textbf{#1:} #2 \par\vspace{2pt}}
+
+% \certrow{Left text}{Right text}
+\newcommand{\certrow}[2]{%
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \textbf{#1} & #2 \\
+  \end{tabular*}
+  \vspace{1pt}
+}
+
+% Bullet list used under every entry
+\newenvironment{bullets}
+  {\begin{itemize}[leftmargin=1.3em,labelsep=0.45em,topsep=3pt,itemsep=1pt,parsep=0pt,label=\textbullet]}
+  {\end{itemize}\vspace{3pt}}
+
+%===============================================================================
+\begin{document}
+
+%------------------------------- HEADING ---------------------------------------
+\begin{center}
+  {\Huge\bfseries Tara Chand Kumawat} \\[6pt]
+  \small
+  +91 7229804925 \ $|$ \
+  \href{mailto:tarachand122333@gmail.com}{tarachand122333@gmail.com} \ $|$ \
+  \href{https://linkedin.com/in/tara122333}{linkedin.com/in/tara122333} \ $|$ \
+  \href{https://tara122333.vercel.app/}{tara122333.vercel.app} \ $|$ \
+  India
+\end{center}
+
+%------------------------------- SUMMARY ---------------------------------------
+\section{Professional Summary}
+Senior Software Engineer with 4+ years of experience designing and building highly scalable
+systems, distributed services, RESTful APIs, and AI applications. Strong expertise in TypeScript,
+JavaScript, React.js, Node.js, microservices, asynchronous processing, AWS, relational databases,
+system design, observability, and production reliability. Experienced in designing performant
+backend architectures, authentication, and enterprise SaaS platforms, with additional expertise in
+production AI systems including RAG, agentic workflows, tool orchestration, and LLM API
+integrations. Proven experience leading engineering initiatives, mentoring engineers, and
+delivering reliable production systems in collaboration with engineering, product, and client
+stakeholders.
+
+%------------------------------- SKILLS ----------------------------------------
+\section{Skills}
+\skillrow{Languages}{C/C++, JavaScript/TypeScript, SQL}
+\skillrow{Development}{React.js, Next.js, Node.js, Express.js, Redux, TailwindCSS, Postman, RESTful APIs, gRPC, WebSocket, API Gateway, Microservices, Axios, Chai, Mocha, Sinon, Problem-solving, Debugging, and Analytical}
+\skillrow{Distributed Systems}{Distributed Systems, Asynchronous Processing, Pub/Sub, Queues, System Design}
+\skillrow{Databases}{MySQL, MongoDB, PostgreSQL, Redis, Pinecone (Vector Database)}
+\skillrow{DevOps}{AWS, Docker, Kubernetes, Terraform, CI/CD, Git \& GitHub, GitHub Workflows, Load Balancer, RabbitMQ, Datadog}
+\skillrow{Security}{OAuth, Authentication, Authorization, 2FA Auth}
+\skillrow{AI Technologies \& Tools}{RAG, LangChain, MCP, Tool calling, Multi-step workflow, Integrate LLM APIs, AI Specialized Engineer, Agentic Engineer, Context Management \& Prompting}
+
+%------------------------------- EXPERIENCE ------------------------------------
+\section{Experience}
+
+\role{WelcomeScreen}{Sep 2023 -- Present}{Senior Software Engineer}{San Francisco, USA}
+\begin{bullets}
+  \item \textbf{Founding Engineer} that contributed to company growth from \textbf{\$0 to \$300K ARR}
+        within the first year by rapidly building and scaling core platform features.
+  \item Supervised, managed, and led a team of \textbf{8 peers} in the development of a robust upgrade
+        for the existing software application, resulting in \textbf{40\% incremental revenue} in 6 months.
+  \item Mentored and solved complex technological issues for a variety of assigned projects,
+        achieving over \textbf{97\% customer satisfaction} and reducing latency by \textbf{40--50\%}.
+  \item Led and mentored a team of \textbf{5+ engineers} to successfully launch a scalable e-commerce
+        platform with seamless \textbf{Stripe integration}, improving payment reliability, accelerating
+        the checkout experience, and driving business growth.
+  \item Re-architected the entire system from monolithic into a scalable \textbf{distributed
+        microservices architecture}, improving scalability, reliability, and fault tolerance, while
+        enabling faster deployments and cleaner, maintainable codebases.
+  \item Optimized business logic and enhanced application performance through \textbf{caching, lazy
+        loading, code splitting, tree shaking, Webpack optimization}, and advanced debugging, reducing
+        customer churn and increasing revenue by \textbf{30\%}.
+  \item Architected and deployed an AI-driven guest support chatbot using \textbf{RAG
+        (Retrieval-Augmented Generation)} and \textbf{ChatGPT}, integrating enterprise knowledge sources
+        to automate query resolution and enhance customer experience.
+  \item Designed and implemented a scalable \textbf{SaaS application} for hosts to integrate the
+        Property Management System (PMS), manage and customize WelcomeScreen TV app content and
+        templates, digital guidebook, guest reservations, and inbox.
+  \item Determined areas of improvement by regularly monitoring existing business systems, fixing
+        bugs, and boosting business efficiency by \textbf{25\%} through automation of repetitive tasks.
+  \item Designed and implemented a scalable \textbf{subscription and billing system} using Stripe,
+        including an admin panel for custom subscriptions with free trials, recurring billing,
+        metered pricing, upgrades/downgrades, and discounts.
+  \item Designed and developed a scalable \textbf{Role-Based Access Control (RBAC)} system for secure
+        authentication, authorization, and multi-level permission management.
+\end{bullets}
+
+\role{AICAN}{July 2023 -- Sept 2023}{Software Engineer}{}
+\begin{bullets}
+  \item Led end-to-end full-stack development of the \textbf{AICAN Admin Panel}, designing and
+        implementing scalable frontend and backend solutions using the \textbf{MERN stack}.
+  \item Architected and developed a role-based \textbf{Access Management System}, enabling secure user
+        authentication, authorization, and permission control across the platform.
+  \item Built \textbf{device management and customizable template modules}, allowing users to add,
+        update, remove, and monitor PH Meters and Gelometers, while supporting dynamic widget
+        ordering and personalized dashboard configurations using React.js and Tailwind CSS.
+\end{bullets}
+
+\role{PAWPI}{Jan 2023 -- July 2023}{Software Development Engineer}{Jaipur, India}
+\begin{bullets}
+  \item Developed and deployed a scalable full-stack \textbf{pet e-commerce marketplace} (pawpi.co)
+        using MongoDB, Express.js, React.js, and Node.js. Implemented responsive user interfaces,
+        payment processing, shipping management, and cloud-based deployment on \textbf{AWS}, while
+        automating releases through \textbf{CI/CD pipelines and GitHub Actions}.
+\end{bullets}
+
+\role{SAASKART, BTH}{Jun 2022 -- Dec 2022}{Software Developer Intern}{Jaipur, India}
+\begin{bullets}
+  \item Engineered scalable frontend and backend solutions for a \textbf{SaaS platform} using React.js,
+        Node.js, Express.js, and MongoDB. Designed and implemented secure authentication workflows
+        (\textbf{Email OTP, Phone OTP, and Magic Link}), developed RESTful APIs, and created unit tests
+        to improve application stability and maintainability.
+\end{bullets}
+
+%------------------------------- EDUCATION -------------------------------------
+\section{Education}
+
+\role{Poornima College of Engineering (RTU)}{Aug 2020 -- Jun 2024}%
+     {Bachelor of Technology in Information Technology --- CGPA: 9.5}{Jaipur, India}
+\vspace{8pt}
+
+%------------------------------- EXTRACURRICULAR -------------------------------
+\section{Extracurricular Activity}
+\begin{bullets}
+  \item Participation in \textbf{Invest Rajasthan STARTUP MEET}, BTH Jaipur.
+  \item Participation in \textbf{Smart India Hackathon}.
+  \item \textbf{\#1 Rank} in CodeChef contest (Starters 41) and won a LinkedIn Premium subscription
+        for 6 months.
+  \item \textbf{3 stars} on LeetCode (@tara122333) with 6 badges (5 monthly and one 100 Days of Code 2022).
+  \item Awarded a \textbf{Gold medal (\#1 Rank)} by HackerRank in both C and C++ programming languages.
+\end{bullets}
+
+\end{document}
