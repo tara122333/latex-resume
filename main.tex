@@ -12,19 +12,78 @@
 \documentclass[letterpaper,10pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage[margin=0.75in,top=0.5in,bottom=0.5in]{geometry}
+% ATS: render with Latin Modern but disable f-ligatures, so "workflow"/"efficiency"
+% extract as plain ASCII instead of the U+FB01/FB02/FB03 glyphs some parsers mangle.
+\usepackage{fontspec}
+\setmainfont{lmroman10-regular.otf}[
+  Ligatures      = NoCommon,
+  BoldFont       = lmroman10-bold.otf,
+  ItalicFont     = lmroman10-italic.otf,
+  BoldItalicFont = lmroman10-bolditalic.otf,
+]
+\usepackage[margin=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{array}
 \usepackage[hidelinks]{hyperref}
+% XMP metadata stream (Dublin Core + PDF schema). pdfinfo-style /Info keys are the
+% legacy path; XMP is what Adobe, Apache Tika and most modern extractors read.
+\usepackage{hyperxmp}
 
+% ATS/document metadata: several parsers and ATS ingest these fields directly,
+% and pdflang lets the extractor pick the right text-encoding rules.
 \hypersetup{
-  pdftitle={Tara Chand Kumawat - Resume},
+  pdftitle={Tara Chand Kumawat - Senior Software Engineer 2026 Resume},
   pdfauthor={Tara Chand Kumawat},
-  pdfsubject={Software Engineer Resume}
+  pdfsubject={Senior Software Engineer - Software Engineer, Distributed Systems, AI/LLM Engineering},
+  pdfcreator={Tara Chand Kumawat},
+  pdflang={en-US},
+  pdfkeywords={Senior Software Engineer, Software Engineer, Full Stack Developer, Node.js Developer, Frontend Developer, SDE, SED-II, Backend Engineer,
+    TypeScript, JavaScript, Python, Java, SQL, React.js, Next.js, Redux, TailwindCSS,
+    Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket, API Design,
+    Microservices, Distributed Systems, Asynchronous Processing, Pub/Sub, Queues,
+    RabbitMQ, API Gateway, System Design, PostgreSQL, MySQL, MongoDB, Redis, Pinecone,
+    Vector Database, AWS, Docker, Kubernetes, Terraform, CI/CD, Git, GitHub Actions,
+    Load Balancers, Datadog, Observability, Monitoring, Production Reliability, OAuth,
+    Authentication, Authorization, 2FA, RBAC, Stripe, SaaS, Multi-tenant, RAG,
+    Retrieval-Augmented Generation, LangChain, MCP, Tool Calling, LLM API Integration,
+    Agentic Engineering, Prompt Engineering, Performance Optimization, Technical Leadership,
+    Mentoring, Code Review, OOP, SOLID, Design Patterns},
+  % --- XMP / Dublin Core: identity and contact, machine-readable ---
+  pdfauthortitle={Senior Software Engineer},
+  pdfcontactemail={tarachand122333@gmail.com},
+  pdfcontactphone={+91 7229804925},
+  pdfcontacturl={https://tara122333.vercel.app/},
+  pdfcontactcity={Jaipur},
+  pdfcontactregion={Rajasthan},
+  pdfcontactcountry={India},
+  pdfmetalang={en-US},
+  pdftype={Resume},
+  pdfcopyright={Copyright (C) 2026 Tara Chand Kumawat. All rights reserved.}
 }
+
+% hyperxmp writes XMP but drops /Author and /Keywords from the legacy /Info
+% dictionary; many parsers still read /Info, so write them back explicitly.
+\makeatletter
+\AtBeginDocument{%
+  \special{pdf:docinfo<<
+    /Author(Tara Chand Kumawat)
+    /Keywords(Senior Software Engineer, Software Engineer, Full Stack Developer,
+      Backend Engineer, TypeScript, JavaScript, Python, Java, SQL, React.js, Next.js,
+      Redux, TailwindCSS, Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket,
+      API Design, Microservices, Distributed Systems, Asynchronous Processing, Pub/Sub,
+      Queues, RabbitMQ, API Gateway, System Design, PostgreSQL, MySQL, MongoDB, Redis,
+      Pinecone, Vector Database, AWS, Docker, Kubernetes, Terraform, CI/CD, Git,
+      GitHub Actions, Load Balancers, Datadog, Observability, Monitoring,
+      Production Reliability, OAuth, Authentication, Authorization, 2FA, RBAC, Stripe,
+      SaaS, Multi-tenant, RAG, Retrieval-Augmented Generation, LangChain, MCP,
+      Tool Calling, LLM API Integration, Agentic Engineering, Prompt Engineering,
+      Performance Optimization, Technical Leadership, Mentoring, Code Review, OOP,
+      SOLID, Design Patterns)
+  >>}%
+}
+\makeatother
 
 %------------------------------- PAGE SETUP ------------------------------------
 \pagestyle{empty}
@@ -42,13 +101,13 @@
 
 %------------------------------- HELPER MACROS ---------------------------------
 % \role{Company}{Dates}{Job Title}{Location}
+% ATS: each visual row is emitted as ONE text line (company + dates together,
+% title + location together) instead of a table that extracts as separate blocks.
 \newcommand{\role}[4]{%
-  \vspace{2pt}
-  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-    \textbf{#1} & #2 \\
-    \textit{#3} & \textit{#4} \\
-  \end{tabular*}
-  \vspace{-6pt}
+  \vspace{2pt}\par\noindent
+  \makebox[\textwidth]{\textbf{#1}\hfill #2}\par
+  \makebox[\textwidth]{\textit{#3}\hfill \textit{#4}}\par
+  \vspace{-2pt}
 }
 
 % \skillrow{Category}{Comma, separated, list}
@@ -83,25 +142,24 @@
 
 %------------------------------- SUMMARY ---------------------------------------
 \section{Summary}
-Senior Software Engineer with 4+ years of experience designing and building highly scalable systems,
-distributed systems, microservices, RESTful APIs, and production AI applications. Strong expertise
-in TypeScript, JavaScript, React.js, Node.js, AWS, SQL/NoSQL databases, system design, and
-observability. Experienced in microservices architecture, performance optimization, secure
-authentication, subscription and payment systems. Hands-on experience with RAG, LangChain, MCP, tool
-calling, and LLM integrations. Proven ability to lead technical initiatives, mentor engineers, and
-deliver reliable, business-focused solutions.
+Senior Software Engineer with 4+ years designing scalable distributed systems, microservices, and
+production GenAI applications in TypeScript, Node.js, Python, FastAPI, React.js, AWS, and SQL/NoSQL
+databases. Hands-on with AI orchestration, RAG, agentic workflows (LangGraph, MCP, tool calling), and LLM
+integrations grounded in live production data. Built asynchronous backends serving 1M+ user requests at 99.9\%
+availability. Strong in system design, observability, secure authentication, and payment systems. Proven
+experience leading engineering initiatives, mentoring engineers, and delivering reliable production systems
+in collaboration with engineering, product, and client stakeholders.
 %------------------------------- SKILLS ----------------------------------------
 \section{Skills}
-\skillrow{Programming Languages}{JavaScript, TypeScript, Python, Java, C, C++, SQL}
-\skillrow{Frontend}{React.js, Next.js, Redux, TailwindCSS, Axios}
-\skillrow{Backend \& APIs}{Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket, API Design, Microservices}
-\skillrow{Distributed Systems}{Distributed Systems, Asynchronous Processing, Pub/Sub, Queues, RabbitMQ, API Gateway, System Design}
+\skillrow{Languages}{JavaScript, TypeScript, Python, SQL}
+\skillrow{Frontend}{React.js, Next.js, AngularJS, Redux, TailwindCSS, HTML, CSS, Axios}
+\skillrow{Backend \& APIs}{FastAPI, Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket, API Design, Microservices}
 \skillrow{Databases}{PostgreSQL, MySQL, MongoDB, Redis, Pinecone (Vector Database)}
+\skillrow{Distributed Systems}{Distributed Systems, Event-Driven Architecture, Asynchronous Processing, Pub/Sub, Queues, Workflow Orchestration, System Design}
 \skillrow{Cloud \& DevOps}{AWS, Docker, Kubernetes, Terraform, CI/CD, Git, GitHub, GitHub Actions, Load Balancers}
-\skillrow{Observability \& Reliability}{Datadog, Structured Logging, Monitoring, Alerting, Production Reliability}
-\skillrow{Security}{OAuth, Authentication, Authorization, 2FA}
-\skillrow{AI \& LLM Engineering}{RAG, LangChain, MCP, Tool Calling, Multi-step Workflows, LLM API Integration, Agentic Engineering, Context Management, Prompt Engineering}
-\skillrow{Engineering}{OOP, SOLID, Design Patterns, Git, Code Review, Technical Mentoring, Architecture Design, Testing, Debugging, Performance Optimization, Production Reliability}
+\skillrow{Observability \& Security}{Datadog, Structured Logging, Monitoring, Alerting, OAuth, Authentication, 2FA}
+\skillrow{GenAI \& LLM Systems}{AI Orchestration, RAG, LangChain, MCP, Tool Calling, Multi-step Workflows, LLM API Integration, Agentic Engineering, Context Management, Prompt Engineering}
+\skillrow{Engineering}{OOP, SOLID, Design Patterns, Git, Code Review, Technical Mentoring, Architecture Design, Testing}
 %------------------------------- EXPERIENCE ------------------------------------
 \section{Experience}
 
@@ -109,22 +167,24 @@ deliver reliable, business-focused solutions.
 \begin{bullets}
   \item Led a team of \textbf{8 engineers} through an end-to-end \textbf{platform modernization},
         shipping a production-grade upgrade that drove \textbf{40\% incremental revenue} in 6 months.
-  \item Re-architected a monolithic application into a \textbf{distributed microservices architecture},
-        improving \textbf{horizontal scalability, fault tolerance}, and release velocity through
-        decoupled services.
-  \item Built a \textbf{real-time AI-powered hospitality platform} with personalized trip itinerary
-        generation, omnichannel \textbf{host--guest messaging} (SMS, WhatsApp, email), and context-grounded
-        \textbf{LLM auto-replies}, backed by a durable \textbf{Postgres job queue} and \textbf{event-driven webhooks}.
-  \item Architected and deployed an AI-powered guest support chatbot using \textbf{RAG
-        (Retrieval-Augmented Generation)} and \textbf{LLM APIs} over enterprise knowledge sources,
-        automating query resolution and elevating the customer experience.
-  \item Designed scalable \textbf{asynchronous backend services} capable of handling tens of thousands of
-        concurrent requests, improving system responsiveness and throughput.
+  \item Built a real-time \textbf{AI-powered hospitality platform} with \textbf{trip itinerary generation}, omnichannel
+        \textbf{host--guest messaging}, and context-grounded \textbf{LLM auto-replies} on a \textbf{Postgres job queue} and
+        \textbf{event-driven webhooks}.
+  \item Architected an \textbf{evidence-driven AI troubleshooting platform} with \textbf{agentic workflows} (\textbf{FastAPI, LangGraph,
+        MCP}, tool calling) grounded in \textbf{RAG}, live APIs, and \textbf{Datadog}, cutting manual triage for support and
+        engineering.
+  \item Designed \textbf{RAG pipelines} integrating document retrieval, \textbf{vector search}, contextual ranking,
+        and \textbf{LLM generation}, improving \textbf{response grounding accuracy by 35\%}.
+  \item Designed and implemented \textbf{modular microservices} and \textbf{REST/GraphQL APIs} using \textbf{SOLID principles}
+        and reusable service abstractions.
+  \item Built a \textbf{reusable component library} of \textbf{250+ React components} and \textbf{200+ backend modules},
+        improving UI consistency and cutting feature development effort by \textbf{\textasciitilde40\%}.
+  \item Designed scalable \textbf{asynchronous backend services} handling \textbf{1M+ requests}, optimizing throughput,
+        responsiveness, and performance under high-concurrency workloads.
   \item Contributed to backend architecture and \textbf{reliability improvements} supporting \textbf{99.9\%
         production availability} across critical services.
-  \item Designed and delivered a \textbf{multi-tenant SaaS platform} enabling hosts to integrate their
-        \textbf{Property Management System (PMS)} via \textbf{third-party API integrations} and manage TV
-        app content, templates, digital guidebooks, guest reservations, and a unified inbox.
+  \item Designed a \textbf{multi-tenant SaaS platform} integrating hosts' \textbf{Property Management Systems (PMS)} via
+        third-party APIs to manage TV app content, templates, digital guidebooks, reservations, and a unified inbox.
   \item Architected a \textbf{subscription and billing system} on \textbf{Stripe} supporting free trials,
         recurring and \textbf{metered/usage-based pricing}, upgrades/downgrades, and discounts, with an
         admin panel for custom plans.
@@ -133,15 +193,10 @@ deliver reliable, business-focused solutions.
         by \textbf{30\%}.
   \item Established centralized \textbf{monitoring, logging, alerting, and error-reporting} pipelines,
         reducing \textbf{mean time to resolution (MTTR) by 40\%}.
-  \item Led and mentored \textbf{5+ engineers} to launch a scalable \textbf{e-commerce platform} with
-        \textbf{Stripe payment integration}, improving payment reliability and streamlining the checkout
-        funnel to drive business growth.
   \item Mentored engineers and resolved complex \textbf{production issues} across multiple projects,
         sustaining over \textbf{97\% customer satisfaction} while reducing latency by \textbf{40--50\%}.
   \item Led \textbf{code reviews and technical mentoring}, promoting best practices for code quality,
         maintainability, testing, reliability, and production readiness.
-  \item Drove \textbf{continuous improvement} by monitoring production systems, triaging defects, and
-        automating repetitive workflows, boosting operational efficiency by \textbf{25\%}.
 \end{bullets}
 
 \role{AICAN Private Limited}{July 2023 -- Sept 2023}{Software Engineer}{Mumbai, India}
