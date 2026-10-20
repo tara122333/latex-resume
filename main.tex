@@ -5,6 +5,7 @@
 %
 % TEMPLATE USAGE
 %   \role{Company}{Dates}{Job Title}{Location}   - one experience/education entry
+%   \project{Name and details}{Dates}           - one-line project heading
 %   bullets environment                          - the bullet list under an entry
 %   \skillrow{Category}{items}                   - one line in Skills
 %   \certrow{Certification name}{Issuer}         - one line for a two-column row
@@ -122,6 +123,15 @@
   \vspace{-2pt}
 }
 
+% \project{Name and details}{Dates}
+% ATS: a single heading line with no title/location row, so parsers don't read the
+% project as a job (title "TypeScript", location "Open").
+\newcommand{\project}[2]{%
+  \vspace{2pt}\par\noindent
+  \makebox[\textwidth]{#1\hfill #2}\par
+  \vspace{-2pt}
+}
+
 % \stack{Comma, separated, list}  - one "Tech Stack" line under a role
 \newcommand{\stack}[1]{\vspace{-2pt}\par\noindent\textbf{Tech Stack:} #1\par\vspace{3pt}}
 
@@ -168,18 +178,18 @@ in collaboration with cross-functional engineering, product, and client stakehol
 %------------------------------- SKILLS ----------------------------------------
 \section{Skills}
 \skillrow{Languages}{JavaScript, TypeScript, Python, SQL}
-\skillrow{Frontend}{React.js, Next.js, AngularJS, Redux, TailwindCSS, HTML, CSS, Axios}
-\skillrow{Backend \& APIs}{FastAPI, Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket, API Design, Microservices}
+\skillrow{Frontend}{React.js, Next.js, AngularJS, Redux, TailwindCSS, HTML, CSS, Axios, Webpack}
+\skillrow{Backend \& APIs}{FastAPI, Node.js, Express.js, RESTful APIs, GraphQL, gRPC, WebSocket, API Design, Stripe}
 \skillrow{Databases}{PostgreSQL, pgvector, MySQL, MongoDB, Redis, Pinecone (Vector Database)}
-\skillrow{Distributed Systems}{Distributed Systems, Event-Driven Architecture, Asynchronous Processing, Pub/Sub, Queues, Workflow Orchestration, System Design}
+\skillrow{Architecture}{Distributed Systems, Microservices, Event-Driven Architecture, Asynchronous Processing, Pub/Sub, Queues, Workflow Orchestration, System Design, Architecture Design}
 \skillrow{Cloud \& DevOps}{AWS, Docker, Kubernetes, Terraform, CI/CD, Git, GitHub, GitHub Actions, Load Balancers}
-\skillrow{Observability \& Security}{Datadog, Structured Logging, Monitoring, Alerting, OAuth, Authentication, 2FA}
+\skillrow{Observability \& Security}{Datadog, Structured Logging, Monitoring, Alerting, OAuth, Authentication, RBAC, 2FA}
 \skillrow{GenAI \& LLM Systems}{AI Orchestration, RAG (Retrieval-Augmented Generation), LangChain, LangGraph, MCP (Model Context Protocol), Tool Calling, Multi-step Workflows, LLM (Large Language Model) API Integration, OpenAI APIs, Embeddings, Vector Search, Agentic Engineering, Context Management, Prompt Engineering}
-\skillrow{Engineering}{OOP, SOLID, Design Patterns, Git, Code Review, Technical Mentoring, Architecture Design, Unit Testing}
+\skillrow{Engineering}{OOP, SOLID, Design Patterns, Code Review, Technical Mentoring, Unit Testing (Mocha, Chai)}
 %------------------------------- EXPERIENCE ------------------------------------
 \section{Experience}
 
-\role{WelcomeScreen (payroll - Kuvi Networks)}{Sep 2023 -- Present}{Senior Founding Engineer}{Bangalore, India}
+\role{Kuvi Networks}{Sep 2023 -- Present}{Senior Software Engineer}{Bengaluru, India}
 \begin{bullets}
   \item Led a team of \textbf{8 engineers} through an end-to-end \textbf{platform modernization},
         shipping a production-grade upgrade that drove \textbf{40\% incremental revenue} in 6 months.
@@ -216,22 +226,17 @@ in collaboration with cross-functional engineering, product, and client stakehol
 \end{bullets}
 \stack{TypeScript, JavaScript, Node.js, Express.js, Python, FastAPI, React.js, Next.js, Redux, PostgreSQL, pgvector, Pinecone, Redis, GraphQL, WebSocket, AWS, Docker, Kubernetes, Terraform, Datadog, LangChain, LangGraph, MCP, OpenAI APIs, Stripe}
 
-\role{AICAN Private Limited}{Jul 2023 -- Sep 2023}{Software Engineer}{Remote}
-\begin{bullets}
-  \item Designed and developed a scalable \textbf{Role-Based Access Control (RBAC)} system for secure
-        authentication, authorization, and multi-level permission management.
-  \item Developed \textbf{device management modules} to add, update, and monitor various devices, with
-        \textbf{customizable dashboards} and dynamic widgets.
-\end{bullets}
-
-\role{PAWPI}{Jan 2023 -- Jul 2023}{Software Development Engineer - Freelancing}{Jaipur, India}
+\role{PAWPI (Freelance)}{Jan 2023 -- Sep 2023}{Software Development Engineer}{Jaipur, India}
 \begin{bullets}
   \item Integrated \textbf{payment processing} and \textbf{shipping management}, enabling end-to-end order fulfillment.
   \item Designed centralized \textbf{notification services} for real-time order and delivery status updates.
+  \item Designed and developed a scalable \textbf{Role-Based Access Control (RBAC)} system for secure authentication,
+        authorization, and multi-level permission management.
   \item Deployed to \textbf{AWS} with \textbf{CI/CD pipelines} and \textbf{GitHub Actions}, shortening release cycles.
 \end{bullets}
+\stack{MongoDB, Express.js, React.js, Node.js, AWS, GitHub Actions}
 
-\role{Stack18}{Jun 2022 -- Dec 2022}{Software Developer Intern}{Jaipur, India}
+\role{Stack18}{Jun 2022 -- Aug 2022}{Software Developer Intern}{Jaipur, India}
 \begin{bullets}
   \item Implemented passwordless \textbf{authentication} (\textbf{Email OTP, Phone OTP, Magic Link}), improving security.
   \item Built responsive user interfaces and \textbf{RESTful APIs} for a \textbf{SaaS platform} using the \textbf{MERN stack}.
@@ -255,7 +260,7 @@ in collaboration with cross-functional engineering, product, and client stakehol
 \section{Education}
 
 \role{Rajasthan Technical University (RTU)}{Aug 2020 -- Jun 2024}%
-     {Bachelor of Technology in Information Technology --- CGPA: 9.5}{Jaipur, India}
+     {Bachelor of Technology (B.Tech) in Information Technology --- CGPA: 9.5/10}{Jaipur, India}
 \vspace{8pt}
 
 %------------------------------- EXTRACURRICULAR -------------------------------
